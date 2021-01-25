@@ -6,10 +6,10 @@ USB_ROOT="/mnt"
 
 error_exit() {
     # Blink the door light to indicate an error
-    echo timer > /sys/class/leds/led2/trigger 
+    echo timer > /sys/class/leds/led2/trigger
     echo 100 > /sys/class/leds/led2/delay_on
     echo 100 > /sys/class/leds/led2/delay_off
-	exit 1
+    exit 1
 }
 
 {
