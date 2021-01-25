@@ -9,7 +9,7 @@ Requirements
 You need to have a PC installation of Densha de Go! Final to copy some chime
 files from, and Densha de Go! Plug & Play Ver.1.13. In addition to those, you
 will also need a USB flash drive and a powered USB OTG hub. Please have at
-least 3GB free on the USB flash drive for a backup.
+least 2GB free on the USB flash drive for a backup.
 
 The USB OTG hub I use can be found [here](https://www.amazon.ca/gp/product/B07BDJN76M).
 
