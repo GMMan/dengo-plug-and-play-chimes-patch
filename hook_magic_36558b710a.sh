@@ -65,6 +65,12 @@ if ! ls "${USB_ROOT}/Chime"/*.vag > /dev/null; then
     error_exit
 fi
 
+# Also, make sure (at least one) chime is correct
+if ! sha1sum -c "${USB_ROOT}/223_1.vag.sha1"; then
+    echo 'Please make sure the chimes are from the installation as described in the README.'
+    error_exit
+fi
+
 # Make chimes directory
 mkdir -p /root/Data/cddata/dengo/Chime
 
