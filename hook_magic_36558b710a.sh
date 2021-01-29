@@ -17,7 +17,7 @@ error_exit() {
 # Stop Densha de Go! game app
 /etc/init.d/S99dgtype3 stop
 
-# SLight the door light to indicate we're running
+# Light the door light to indicate we're running
 echo -n none > /sys/class/leds/led2/trigger
 echo 1 > /sys/class/leds/led2/brightness
 
@@ -43,6 +43,20 @@ fi
 
 # Remount with write access
 mount -o remount,rw /
+
+if [ -f "${USB_ROOT}/revert" ]; then
+    # Revert changes flag detected, restore original file and delete chimes
+    cd /root
+    if [ ! -f dgf.orig ]; then
+        echo "Original dgf executable not found, cannot revert."
+        error_exit
+    fi
+    mv dgf.orig dgf
+    rm -rf Data/cddata/dengo
+    rm "${USB_ROOT}/revert"
+    poweroff
+    exit
+fi
 
 # Copy over the chimes
 # But first, let's make sure we actually have files to copy over
@@ -75,6 +89,14 @@ fi
 # Patch the game executable
 if ! LD_LIBRARY_PATH="${USB_ROOT}/bin" /tmp/bspatch dgf dgf_patched "${USB_ROOT}/dgf.patch"; then
     echo "Error patching"
+    error_exit
+fi
+
+# Check that the patched executable is valid
+if ! sha1sum -c "${USB_ROOT}/dgf_patched.sha1"; then
+    echo "Patching appears to have produced incorrect file."
+    rm dgf_patched
+    rm -rf Data/cddata/dengo
     error_exit
 fi
 

@@ -41,3 +41,9 @@ long time. Expect it to take 30-60 minutes to complete. Once it has been
 completed, you can rerun the patching process without going through backup
 again if necessary. Please safekeep the backup files: `dgtyp3zzzz.tar.gz`,
 `dgtyp3zzzz.tar.gz.md5`, and `installed.md5`.
+
+Uninstallation
+--------------
+Place a blank file named `revert` on to the USB drive and repeat steps 4-6 to
+revert the patch. Please do this if you need to reapply an updated version of
+the patch.
