@@ -58,16 +58,18 @@ if [ -f "${USB_ROOT}/revert" ]; then
     exit
 fi
 
+cd "${USB_ROOT}"
+
 # Copy over the chimes
 # But first, let's make sure we actually have files to copy over
-if ! ls "${USB_ROOT}/Chime"/*.vag > /dev/null; then
+if ! ls Chime/*.vag > /dev/null; then
     echo 'Please copy the chimes from your Densha de Go! Final installation before using on your Densha de Go! Plug & Play.'
     error_exit
 fi
 
 # Also, make sure (at least one) chime is correct
-if ! sha1sum -c "${USB_ROOT}/223_1.vag.sha1"; then
-    echo 'Please make sure the chimes are from the installation as described in the README.'
+if ! sha1sum -c chimes.sha1; then
+    echo 'Chimes hash mismatch. Please make sure to copy the correct chimes as per the README.'
     error_exit
 fi
 
@@ -75,13 +77,13 @@ fi
 mkdir -p /root/Data/cddata/dengo/Chime
 
 # Copy the files
-if ! cp "${USB_ROOT}/Chime"/*.vag /root/Data/cddata/dengo/Chime/; then
+if ! cp Chime/*.vag /root/Data/cddata/dengo/Chime/; then
     error_exit
 fi
 
 # Do patching
 # Copy bspatch to /tmp and apply execute permission
-cp "${USB_ROOT}/bin/bspatch" /tmp/bspatch
+cp bin/bspatch /tmp/bspatch
 chmod +x /tmp/bspatch
 
 cd /root
