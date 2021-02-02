@@ -12,13 +12,18 @@ will also need a USB flash drive and a powered USB OTG hub. Please have at
 least 2GB free on the USB flash drive for a backup.
 
 The USB OTG hub I use can be found [here](https://www.amazon.ca/gp/product/B07BDJN76M).
+You can also use an angle adapter instead of a hub, but I find the quality
+inconsistent, meaning that sometimes it may not make contact properly and cause
+issues.
 
 Usage
 -----
 1. From your Densha de Go! Final installation, copy all files in
    `cddata\dengo\Chime` to the `Chime` folder here.
-2. Prepare a USB drive by formatting it to FAT32. Please search online if you
-   need instructions on how to do this.
+2. Prepare a USB drive by formatting it to FAT32. Make sure that there is a
+   partition table present, and the FAT32 partition is the first one, as the
+   factory script specifically looks at the first partition. Please search
+   online if you need instructions on how to do this.
 3. Copy all of the files in this repository (including the `Chime` folder you
    just put some files into) into the root of your USB drive. Eject the USB
    drive from your computer after it is finished copying.
